@@ -39,29 +39,27 @@ def add_element_to_beginning_of_array(array, element)
 	array.unshift(element)
 end
 
-# sort an array of words by their last letter, e.g.
-# ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
+# -----------------------------------------------------------
 def array_sort_by_last_letter_of_word(array)
 	arr = array.map{|x| x.reverse}.sort
 	arr.map{|x| x.reverse}
 end
 
-# cut strings in half, and return the first half, e.g.
-# 'banana' becomes 'ban'. If the string is an odd number of letters
-# round up - so 'apple' becomes 'app'
+#-------------------------------------------------------------
 def get_first_half_of_string(string)
+	string.chars.take((string.length.to_f/2).ceil).join("")
 end
 
-# turn a positive integer into a negative integer. A negative integer
-# stays negative
+#---------------------------------------------------------------
 def make_numbers_negative(number)
+	-number.abs
 end
 
-# turn an array of numbers into two arrays of numbers, one an array of 
-# even numbers, the other an array of odd numbers
-# even numbers come first
-# so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
+#-----------------------------------------------------------------
 def separate_array_into_even_and_odd_numbers(array)
+	a = []
+	a.push(array.select{|x| x if x.even?})
+	a.push(array.select{|x| x if x.odd?})
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -79,50 +77,56 @@ end
 def longest_word_in_array(array)
 end
 
-# add up all the numbers in an array, so [1, 3, 5, 6]
-# returns 15
+#----------------------------------------------------------------------
 def total_of_array(array)
 	array.inject(:+)
 end
 
-# turn an array into itself repeated twice. So [1, 2, 3]
-# becomes [1, 2, 3, 1, 2, 3]
+#----------------------------------------------------------------------
 def double_array(array)
+	a = array.clone
+	array.push(a).flatten
 end
 
-# convert a symbol into a string
+#------------------------------------------------------------------------
 def turn_symbol_into_string(symbol)
+	symbol.to_s
 end
 
-# get the average from an array, rounded to the nearest integer
-# so [10, 15, 25] should return 33
+#-------------------------------------------------------------------------
 def average_of_array(array)
+	(array.inject(:+).to_f/array.length.to_f).round
 end
 
-# get all the elements in an array, up until the first element
-# which is greater than five. e.g.
-# [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
-# becomes [1, 3, 5, 4, 1, 2]
+# ----------------------------------------------------------------------------
 def get_elements_until_greater_than_five(array)
+	array.take_while{|x| x <= 5}
 end
 
-# turn an array (with an even number of elements) into a hash, by
-# pairing up elements. e.g. ['a', 'b', 'c', 'd'] becomes
-# {'a' => 'b', 'c' => 'd'}
+#=============================================================================
 def convert_array_to_a_hash(array)
+	b = []
+	x = 0
+	while x < array.length
+		a = []
+		a.push(array[x])
+		a.push(array[x + 1])
+		b.push(a)
+		x += 2
+	end
+	b.to_h
 end
 
-# get all the letters used in an array of words and return
-# it as a array of letters, in alphabetical order
-# . e.g. the array ['cat', 'dog', 'fish'] becomes
-# ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
+#-------------------------------------------------------------------------------
 def get_all_letters_in_array_of_words(array)
+	array.join("").chars.sort
 end
 
 # swap the keys and values in a hash. e.g.
 # {'a' => 'b', 'c' => 'd'} becomes
 # {'b' => 'a', 'd' => 'c'}
 def swap_keys_and_values_in_a_hash(hash)
+	hash.invert
 end
 
 # in a hash where the keys and values are all numbers

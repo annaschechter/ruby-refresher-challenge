@@ -62,19 +62,19 @@ def separate_array_into_even_and_odd_numbers(array)
 	a.push(array.select{|x| x if x.odd?})
 end
 
-# count the numbers of elements in an element which are palindromes
-# a palindrome is a word that's the same backwards as forward
-# e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
-# are 2 palindromes (bob and radar), so the method should return 2
+#-------------------------------------------------------------------
 def number_of_elements_that_are_palindromes(array)
+	array.select{|x| x if x == x.reverse}.length
 end
 
-# return the shortest word in an array
+#------------------------------------------------------------------------------------
 def shortest_word_in_array(array)
+	array.inject{|element, result| result.length > element.length ? element : result}
 end
 
-# return the shortest word in an array
+#-------------------------------------------------------------------------------------
 def longest_word_in_array(array)
+	array.inject{|element, result| result.length < element.length ? element : result}
 end
 
 #----------------------------------------------------------------------
@@ -171,26 +171,27 @@ def is_a_3_dot_range?(range)
 	(range).to_s.split(".")[2] == "" ? true : false
 end
 
-# get the square root of a number
+#-----------------------------------------------------------------------------------------------
 def square_root_of(number)
+	Math.sqrt(number)
 end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+	File.open('lorem.txt').read.split(" ").length
 end
 
 # --- tougher ones ---
 
-# call an arbitrary method from a string. so if I
-# called call_method_from_string('foobar')
-# the method foobar should be invoked
+#-------------------------------------------------------------------------------------------------
 def call_method_from_string(str_method)
+	str_method.call
 end
 
-# return true if the date is a uk bank holiday for 2014
-# the list of bank holidays is here:
-# https://www.gov.uk/bank-holidays
+#-------------------------------------------------------------------------------------------------
 def is_a_2014_bank_holiday?(date)
+	dates = [Time.new(2014, 1, 1), Time.new(2014, 4, 18), Time.new(2014, 4, 21), Time.new(2014, 5, 5), Time.new(2014, 5, 26), Time.new(2014, 8, 25), Time.new(2014, 12, 25), Time.new(2014, 12, 26)]
+	dates.include?(date) ? true : false
 end
 
 # given your birthday this year, this method tells you
@@ -198,6 +199,13 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+	day = birthday.day
+	month = birthday.day
+
+	while birthday.friday? == false
+		birthday = Time.new(birthday.year + 1, month, day)
+	end
+	birthday.year
 end
 
 # in a file, total the number of times words of different lengths

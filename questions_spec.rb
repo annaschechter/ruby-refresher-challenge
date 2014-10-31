@@ -77,18 +77,17 @@ describe 'the Friday test :)' do
     expect(n).to eq [[2, 4, 6], [1, 3, 5, 7]]
   end
 
-  # -----------------------------------------------------------------------------
-  specify 'number_of_elements_that_are_palindromes' do
+  fit 'number_of_elements_that_are_palindromes' do
     n = number_of_elements_that_are_palindromes ['bob', 'radar', 'alex', 'noon', 'banana']
     expect(n).to eq 3
   end
 
-  specify 'shortest_word_in_array' do
+  fit 'shortest_word_in_array' do
     n = shortest_word_in_array %w(here is a bunch of words of different lengths)
     expect(n).to eq 'a'
   end
 
-  specify 'longest_word_in_array' do
+  fit 'longest_word_in_array' do
     n = longest_word_in_array %w(here is a bunch of words of different lengths)
     expect(n).to eq 'different'
   end
@@ -189,32 +188,31 @@ describe 'the Friday test :)' do
     expect(b).to be true
   end
 
-  # -----------------------------------------------------------------------------------
-  specify 'square_root_of' do
+  fit 'square_root_of' do
     a = square_root_of 9
     b = square_root_of 3
     expect(a).to eq 3.0
     expect(b).to eq 1.7320508075688772
   end
 
-  specify 'word_count_a_file' do
+  fit 'word_count_a_file' do
     n = word_count_a_file 'lorem.txt'
     expect(n).to eq 70
   end
 
-  specify 'call_method_from_string' do
+  fit 'call_method_from_string' do
     expect { call_method_from_string('foobar') }.to raise_error(NameError)
   end
 
-  specify 'is_a_2014_bank_holiday?' do
+  fit 'is_a_2014_bank_holiday?' do
     a = is_a_2014_bank_holiday?(Time.new(2014, 8, 25))
     b = is_a_2014_bank_holiday?(Time.new(2014, 8, 26))
 
-    expect(a).to be_true
-    expect(b).to be_false
+    expect(a).to be true
+    expect(b).to be false
   end
 
-  specify 'your_birthday_is_on_a_friday_in_the_year' do
+  fit 'your_birthday_is_on_a_friday_in_the_year' do
     n = your_birthday_is_on_a_friday_in_the_year(Time.new(2013, 1, 1))
     expect(n).to eq 2016
   end

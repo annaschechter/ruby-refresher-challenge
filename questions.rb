@@ -155,7 +155,7 @@ def titleize_a_string(string)
 	(string.capitalize!.split(" ").each {|x| x.capitalize! if !arr.include?(x)}).join(" ")
 end
 
-#============================================================================================
+#-------------------------------------------------------------------------------------------
 def check_a_string_for_special_characters(string)
 	if (string =~ /\W/) == nil then false else true end
 
@@ -166,7 +166,7 @@ def get_upper_limit_of(range)
 	Array(range).last
 end
 
-#===============================================================================================
+#---------------------------------------------------------------------------------------------
 def is_a_3_dot_range?(range)
 	(range).to_s.split(".")[2] == "" ? true : false
 end
@@ -194,10 +194,7 @@ def is_a_2014_bank_holiday?(date)
 	dates.include?(date) ? true : false
 end
 
-# given your birthday this year, this method tells you
-# the next year when your birthday will fall on a friday
-# e.g. january 1st, will next be a friday in 2016
-# return the day as a capitalized string like 'Friday'
+# ---------------------------------------------------------------------------------
 def your_birthday_is_on_a_friday_in_the_year(birthday)
 	day = birthday.day
 	month = birthday.day
@@ -208,25 +205,48 @@ def your_birthday_is_on_a_friday_in_the_year(birthday)
 	birthday.year
 end
 
-# in a file, total the number of times words of different lengths
-# appear. So in a file with the text "the cat sat on the blue mat"
-# I have 5 words which are 3 letters long, 1 which is 2 letters long
-# and 1 that is 4 letters long. Return it as a hash in the format
-# word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
+#---------------------------------------------------------------------------------
 def count_words_of_each_length_in_a_file(file_path)
+	h = {}
+	array = File.open('lorem.txt').read.to_s.gsub(",", " ").gsub(".", "").split(" ")
+	array.each {|x| 
+		h[x.length] == nil ? key = 0 : key = h[x.length]
+		h[x.length] = key + 1}
+	h
 end
 
-# implement fizzbuzz without modulo, i.e. the % method
-# go from 1 to 100
-# (there's no RSpec test for this one)
+#---------------------------------------------------------------------------
 def fizzbuzz_without_modulo
+	for i in 1..100 do
+		if i.gcd(15) == 15  
+			puts "FizzBuzz"
+		elsif i.gcd(15) == 3
+			puts "Fizz"
+		elsif  i.gcd(15) == 5
+			puts "Buzz"
+		else 
+			puts "#{i}"
+		end
+	end
 end
 
-# print the lyrics of the song 99 bottles of beer on the wall
-# http://www.99-bottles-of-beer.net/lyrics.html
-# make sure you use the singular when you have one bottle of 
-# beer on the wall, and print 'no more bottles of beer on the wall'
-# at the end.
-# (there's no RSpec test for this one)
+#-------------------------------------------------------------------------------------------
 def ninety_nine_bottles_of_beer
+	i = 99
+	while i > 1
+		if i == 2
+			puts "#{i} bottles of beer on the wall, #{i} bottles of beer.
+				Take one down and pass it around, #{i - 1} bottle of beer on the wall."
+		elsif i == 1
+			puts "1 bottle of beer on the wall, 1 bottle of beer.
+				Take one down and pass it around, no more bottles of beer on the wall."
+		else
+			puts "#{i} bottles of beer on the wall, #{i} bottles of beer.
+				Take one down and pass it around, #{i - 1} bottles of beer on the wall."
+		end
+		i -= 1
+
+	end
+	puts "No more bottles of beer on the wall, no more bottles of beer. 
+			Go to the store and buy some more, 99 bottles of beer on the wall."
 end
